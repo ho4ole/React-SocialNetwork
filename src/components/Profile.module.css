@@ -1,0 +1,10 @@
+
+
+.content {
+    grid-area: cont;
+    background-color: green;
+}
+
+.item {
+    color : pink;
+}
