@@ -1,6 +1,6 @@
 .app-wrapper {
     display: grid;
-    width: 1200px;
+    width: 80%;
     margin: 0 auto;
 
     grid-template-areas:
@@ -10,6 +10,11 @@
     grid-template-rows: 60px 1fr;
     grid-template-columns: 2fr 10fr;
 
+}
+
+.app-wrapper-content {
+    grid-area: cont;
+    background-color: green;
 }
 
 

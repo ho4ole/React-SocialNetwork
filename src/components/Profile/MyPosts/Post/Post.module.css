@@ -1,0 +1,9 @@
+
+.item {
+    color : pink;
+}
+
+.item img {
+    width: 50px;
+    border-radius: 20px;
+}
