@@ -1,15 +1,16 @@
-import postClasses from "./Post.module.css"
+import React from 'react';
+import s from './Post.module.css';
 
-function Post(props) {
-    return <div className={postClasses.item}>
-        <img
-            src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?size=338&ext=jpg"
-            alt=""/>
-        {props.message}
-        <div>
-            <span>Like </span> {props.likesCount}
-        </div>
+const Post = (props) => {
+  return (
+    <div className={s.item}>
+      <img src='https://movies4maniacs.liberty.me/wp-content/uploads/sites/1218/2015/09/avatarsucks.jpg' />
+        { props.message }
+          <div>
+        <span>like</span> { props.likesCount }
+      </div>
     </div>
+  )
 }
 
 export default Post;

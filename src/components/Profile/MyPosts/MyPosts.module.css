@@ -1,12 +1,7 @@
-
-.posts {
+.postsBlock {
     padding: 10px;
 }
 
-.item {
-    color : pink;
-}
-
-button {
-  margin-bottom: 10px;
+.posts {
+    margin-top: 10px;
 }

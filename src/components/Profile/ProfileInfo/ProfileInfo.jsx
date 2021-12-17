@@ -1,14 +1,18 @@
-import profileInfoClasses from './ProfileInfo.module.css'
+import React from 'react';
+import s from './ProfileInfo.module.css';
 
-function ProfileInfo() {
-    return <div>
+const ProfileInfo = () => {
+    return (
         <div>
-            <img src={'https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg'}/>
+            <div>
+                <img
+                    src='https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&h=350'/>
+            </div>
+            <div className={s.descriptionBlock}>
+                ava + description
+            </div>
         </div>
-        <div className={profileInfoClasses.descriptionBlock}>
-            ava+desc
-        </div>
-    </div>
+    )
 }
 
 export default ProfileInfo;
