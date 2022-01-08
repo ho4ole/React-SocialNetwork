@@ -13,7 +13,7 @@ let initialState = {
     pageSize: 10,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: false,
+    isFetching: true,
     isFollowing: []
 
 
@@ -61,11 +61,10 @@ const usersReducer = (state = initialState, action) => {
             return {...state, isFetching: action.isFetching}
         }
         case TOGGLE_IS_FOLLOWING_PROGRESS: {
-            debugger
             return {
                 ...state,
                 isFollowing: action.isFetching ? [...state.isFollowing, action.userId] :
-                    [...state.isFollowing.filter(id => id != action.userId)]
+                    state.isFollowing.filter(id => id != action.userId)
             }
         }
 
@@ -83,7 +82,7 @@ export const setUser = (users) => ({type: SET_USERS, users})
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
 export const setCurrentUsersTotalCount = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount})
 export const setIsFetching = (isFetching) => ({type: SET_TOGGLE_IS_FETCHING, isFetching})
-export const setToggleIsFollowing = (isFollowing, userId) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, isFollowing, userId})
+export const setToggleIsFollowing = (isFetching, userId) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId})
 
 export const getUsers = (currentPage, pageSize) => {
     return (dispatch) => {
@@ -113,7 +112,7 @@ export const unFollow = (userId) => {
 export const follow = (userId) => {
     return (dispatch) => {
         dispatch(setToggleIsFollowing(true, userId))
-        usersAPI.userUnFollow(userId)
+        usersAPI.userFollow(userId)
             .then(response => {
                 if (response.data.resultCode == 0) {
                     dispatch(followSuccess(userId))

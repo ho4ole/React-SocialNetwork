@@ -17,20 +17,31 @@ export const usersAPI = {
             });
     },
     userUnFollow(user) {
-       return instance.delete (`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
-            {
-                withCredentials: true,
-                headers: {
-                    "API-KEY": "3d30378c-a9e4-4495-aeb4-b14373996c47"
-                }
-            }
-        )
+       return instance.delete (`follow/${user}`)
+
     },
     userFollow(user) {
-       return instance.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
-            {}, {withCredentials: true,
-                headers: {
-                    "API-KEY": "3d30378c-a9e4-4495-aeb4-b14373996c47"
-                }})
+       return instance.post(`follow/${user}`)
+
+    },
+}
+
+export const profileAPI = {
+    getProfile(userId) {
+        return instance.get(`profile/`+ userId)
+    },
+    getStatus(userId) {
+        return instance.get(`profile/status/`+ userId)
+    },
+    updateStatus(status) {
+        return instance.put(`profile/status`, {status: status})
+    },
+}
+
+export const authAPI = {
+    me() {
+      return  instance.get(`auth/me`)
     }
 }
+
+

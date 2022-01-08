@@ -1,9 +1,7 @@
 import styles from "./users.module.css";
 import userPhoto from "./photo.jpg";
 import React from "react";
-import {NavLink} from "react-router-dom";
-import * as axios from "axios";
-import {usersAPI} from "../../api/api";
+import {NavLink, Redirect} from "react-router-dom";
 
 let Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -13,7 +11,6 @@ let Users = (props) => {
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
     }
-
 
     return <div>
         <div>
