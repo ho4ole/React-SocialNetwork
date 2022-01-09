@@ -1,9 +1,20 @@
 import {Field, reduxForm} from "redux-form";
+import {Input} from "../common/FormsControls/FormsControls";
+import {required} from "../../utils/validators";
+import {connect} from "react-redux";
+import {login} from "../../redux/auth-reducer";
+import {Redirect} from "react-router-dom";
+import styles from "../../components/common/FormsControls/FormsControl.module.css"
 
-const Login = () => {
+
+const Login = (props) => {
 
     const onSubmit = (formData) => {
+        props.login(formData.email, formData.password, formData.rememberMe)
+    }
 
+    if (props.isAuth) {
+        return <Redirect to={"/profile"}/>
     }
 
     return <div>
@@ -16,14 +27,19 @@ const LoginForm = (props) => {
     return <div>
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field placeholder={"Login"} name={"login"} component={"input"}/>
+                <Field placeholder={"Email"} name={"email"} component={Input} validate={[required]}
+                       component={Input}/>
             </div>
             <div>
-                <Field placeholder={"Password"} name={"password"} component={"input"}/>
+                <Field placeholder={"Password"} name={"password"} component={Input} type={"password"} validate={[required]}
+                       component={Input}/>
             </div>
             <div>
-                <Field  component={"input"} name={"rememberMe"}  type={"checkbox"}/> remember me
+                <Field  component={Input} name={"rememberMe"}  type={"checkbox"}/> remember me
             </div>
+            { props.error && <div className={styles.formSummaryError}>
+
+            </div>}
             <div>
                 <button>Log in</button>
             </div>
@@ -31,8 +47,14 @@ const LoginForm = (props) => {
     </div>
 }
 
+
+
 const LoginReduxForm = reduxForm({
     form: 'login'
 }) (LoginForm)
 
-export default Login
+const mapStateToProps = (state) => ({
+    isAuth: state.auth.isAuth
+})
+
+export default connect(mapStateToProps, {login}) (Login)
