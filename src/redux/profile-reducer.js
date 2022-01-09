@@ -26,13 +26,11 @@ const profileReducer = (state = initialState, action) => {
                 message: action.newPost,
                 likesCount: 0
             };
-            let stateCopy = {...state};
-            stateCopy.posts = [...state.posts];
-            stateCopy.posts.push(newPost);
-            stateCopy.newPostText = '';
-            return stateCopy;
-            state.posts.push(newPost);
-            state.newPostText = '';
+            return {
+                ...state,
+                posts: [...state.posts, newPost],
+                newPostText: ''
+            };
         case SET_USER_PROFILE: {
             return {...state, profile: action.profile}
 
@@ -50,6 +48,7 @@ export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
 export const setUserStatus = (status) => ({type: SET_USER_STATUS, status})
 
 export const getUserProfile = (userId) => (dispatch) => {
+    debugger
     profileAPI.getProfile(userId)
         .then(response => {
             dispatch(setUserProfile(response.data));
