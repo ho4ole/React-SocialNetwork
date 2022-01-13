@@ -1,14 +1,13 @@
 import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profile-reducer";
 import {Field, reduxForm} from "redux-form";
 import {maxLengthCreator, required} from "../../../utils/validators";
 import {Textarea} from "../../common/FormsControls/FormsControls";
 
 const lengthCreator = maxLengthCreator(10)
 
-const MyPosts = (props) => {
+const MyPosts = React.memo(props => {
     let postsElements = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>);
 
 
@@ -27,7 +26,8 @@ const MyPosts = (props) => {
             </div>
         </div>
     )
-}
+})
+
 
 const NewPostForm = (props) => {
     return <div>

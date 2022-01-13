@@ -9,7 +9,6 @@ import React from 'react';
 import Users from './Users';
 import Preloader from "../common/Preloader/Preloader";
 import {compose} from "redux";
-import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {
     getCurrentPage,
     getIsFetching, getIsFollowing,
